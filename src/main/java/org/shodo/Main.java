@@ -1,3 +1,5 @@
+package org.shodo;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -6,6 +8,7 @@ import org.eclipse.jetty.servlet.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
+import javax.servlet.RequestDispatcher;
 
 public class Main extends HttpServlet {
   @Override
@@ -21,7 +24,8 @@ public class Main extends HttpServlet {
 
   private void showHome(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-    resp.getWriter().print("Hello from Java!");
+    RequestDispatcher dispatcher = req.getRequestDispatcher("/main");
+    dispatcher.forward(req, resp);
   }
 
   private void showDatabase(HttpServletRequest req, HttpServletResponse resp)
